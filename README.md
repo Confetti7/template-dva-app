@@ -9,7 +9,7 @@
 -   babel presets env预设只包含我们使用和目标浏览器中缺少的功能的转换和polyfill
 -   babel presets env 如果设置了useBuiltIns(默认false)特殊说明一下，此选项将core-js模块的直接引用添加为裸导入。因此core-js将相对于文件本身进行解析并且需要可访问，所以需要显示引入(yarn add)或者其他包依赖core-js。
 
-### 20190122
+### 20190123
 -   将环境变量CODE_ENV作用缩小，打包区别更多的体现在config文件内
 -   样式热更新，区分一下MiniCssExtractPlugin.loader和style-loader的使用
 -   class普通函数使用箭头函数模式，自动绑定this。这个特性需要babel-plugin-transform-class-properties来转译，这个插件在原来是包含在stage-2里面的，现在，需要单独引入。
