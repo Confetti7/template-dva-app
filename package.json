@@ -6,16 +6,22 @@
     "author": "liuxu",
     "license": "MIT",
     "scripts": {
-        "build": "rimraf ./dist && cross-env CODE_ENV=production && webpack --config build/webpack.prod.config.js --progress --colors",
-        "dev": "cross-env CODE_ENV=development && nodemon ./devServer.js"
+        "build": "rimraf ./dist && cross-env CODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
+        "dev": "cross-env CODE_ENV=development nodemon ./devServer.js"
     },
     "dependencies": {
         "core-js": "^2.6.3",
+        "dva": "^2.4.1",
+        "fastclick": "^1.0.6",
+        "history": "^4.7.2",
+        "prop-types": "^15.6.2",
         "react": "^16.7.0",
-        "react-dom": "^16.7.0"
+        "react-dom": "^16.7.0",
+        "react-hot-loader": "^4.6.3"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
+        "@babel/plugin-proposal-class-properties": "^7.3.0",
         "@babel/preset-env": "^7.3.1",
         "@babel/preset-react": "^7.0.0",
         "autoprefixer": "^9.4.6",

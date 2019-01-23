@@ -20,8 +20,8 @@ module.exports = {
     },
     output: {
         filename: '[name].[hash].js',
-        path: path.join(__dirname, '../dist')
-        // publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
+        path: path.join(__dirname, '../dist'),
+        publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
     },
     module: {
         rules: [
