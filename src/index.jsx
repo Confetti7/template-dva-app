@@ -4,6 +4,7 @@
  */
 
 import dva from 'dva';
+import './common/less/base.less';
 import './index.less';
 import createHistory from 'history/createBrowserHistory';
 

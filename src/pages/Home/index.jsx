@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import { connect } from 'dva';
-import avatar from '../../assets/img/avatar.png'
+import avatar from '../../assets/imgs/avatar.png'
 
 class Home extends React.Component {
     updateName = () => {

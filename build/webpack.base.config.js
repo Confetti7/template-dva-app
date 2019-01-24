@@ -35,10 +35,20 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     outputPath: 'static/imgs/', // 图片输出的路径
-                    limit: 1 * 1024
+                    name: '[name].[hash:8].[ext]',
+                    limit: 10 * 1024
                 },
-                include: src('assets'),
-                exclude: /node_modules/
+                include: src('assets/imgs')
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10 * 1024,
+                    name: '[name].[hash:8].[ext]',
+                    outputPath: 'static/fonts/'
+                },
+                include: src('assets/fonts')
             }
         ]
     },
