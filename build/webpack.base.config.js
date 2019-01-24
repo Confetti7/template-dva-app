@@ -14,12 +14,13 @@ const { src } = require('./webpack.utils');
 console.log(process.env.CODE_ENV);
 
 module.exports = {
+    target: 'web',
     mode: process.env.CODE_ENV,
     entry: {
         app: path.join(__dirname, '../src/index.jsx')
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[chunkhash].js',
         path: path.join(__dirname, '../dist'),
         publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
     },
@@ -44,9 +45,9 @@ module.exports = {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 10 * 1024,
+                    outputPath: 'static/fonts/',
                     name: '[name].[hash:8].[ext]',
-                    outputPath: 'static/fonts/'
+                    limit: 10 * 1024
                 },
                 include: src('assets/fonts')
             }

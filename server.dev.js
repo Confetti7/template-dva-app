@@ -6,7 +6,7 @@
 const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
-const config = require('./build/webpack.dev.config.js');
+const config = require('./build/webpack.dev.config.js'); 
 
 const port = 7777;
 const options = {
@@ -25,5 +25,5 @@ const compiler = webpack(config);
 const server = new webpackDevServer(compiler, options);
 
 server.listen(port, 'localhost', () => {
-    console.log('dev server listening on port ' + port);
+    console.log(`dev server listening on port ${port}!`);
 });

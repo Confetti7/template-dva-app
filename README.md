@@ -16,3 +16,4 @@
 
 ### 20190124
 -   文件size小于limit参数，url-loader将会把文件转为DataURL；文件size大于limit，url-loader会调用file-loader进行处理，参数也会直接传给file-loader。因此我们只需要安装url-loader即可。[参考资料](https://blog.csdn.net/WEB_YH/article/details/79325182)
+-   

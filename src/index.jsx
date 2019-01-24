@@ -8,6 +8,8 @@ import './common/less/base.less';
 import './index.less';
 import createHistory from 'history/createBrowserHistory';
 
+import FastClick from 'fastclick';
+
 import models from './models';
 import routes from './utils/router';
 
@@ -26,3 +28,5 @@ app.router(routes);
 
 // 渲染页面
 app.start('#root');
+
+FastClick.attach(document.body);

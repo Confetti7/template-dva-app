@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import { connect } from 'dva';
-import avatar from '../../assets/imgs/avatar.png'
+// import avatar from '../../assets/imgs/avatar.png'
 
 class Home extends React.Component {
     updateName = () => {
@@ -20,7 +20,7 @@ class Home extends React.Component {
             <div className={styles['container-home']}>
                 welcome to my home, {name}
                 <div onClick={this.updateName}>show my name</div>
-                <img src={avatar} alt=""/>
+                {/* <img src={avatar} alt=""/> */}
             </div>
         );
     }

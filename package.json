@@ -6,12 +6,14 @@
     "author": "liuxu",
     "license": "MIT",
     "scripts": {
-        "build": "rimraf ./dist && cross-env CODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
-        "dev": "cross-env CODE_ENV=development nodemon ./devServer.js"
+        "build": "rimraf ./dist && cross-env CODE_ENV=development webpack --config build/webpack.prod.config.js --progress --colors",
+        "dev": "cross-env CODE_ENV=development nodemon ./server.dev.js",
+        "server": "nodemon ./server.js"
     },
     "dependencies": {
         "core-js": "^2.6.3",
         "dva": "^2.4.1",
+        "express": "^4.16.4",
         "fastclick": "^1.0.6",
         "history": "^4.7.2",
         "prop-types": "^15.6.2",

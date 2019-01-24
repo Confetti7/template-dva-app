@@ -11,6 +11,7 @@ const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
 
 module.exports = merge(base, {
+    devtool: 'source-map',
     output: {
         // 热更新(HMR)不能和[chunkhash]同时使用。
         filename: '[name].[hash].js'
