@@ -17,12 +17,42 @@ module.exports = {
     target: 'web',
     mode: process.env.CODE_ENV,
     entry: {
-        app: path.join(__dirname, '../src/index.jsx')
+        index: path.join(__dirname, '../src/index.jsx')
     },
     output: {
         filename: '[name].[chunkhash].js',
         path: path.join(__dirname, '../dist'),
         publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'initial',
+            minSize: 1 * 1024,
+            minChunks: 1, // 共享该module的最小chunk数
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3, // 初始化的时候最多有3个请求该module,太多就没必要抽离了
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                react: {
+                    test: (module, chunks) => {
+                        console.log(module.context);
+                        return /(react)/.test(module.context);
+                    },
+                    priority: 1, // 定义优先级
+                    reuseExistingChunk: true
+                },
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     module: {
         rules: [
