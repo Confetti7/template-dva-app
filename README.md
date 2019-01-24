@@ -13,3 +13,6 @@
 -   将环境变量CODE_ENV作用缩小，打包区别更多的体现在config文件内
 -   样式热更新，区分一下MiniCssExtractPlugin.loader和style-loader的使用
 -   class普通函数使用箭头函数模式，自动绑定this。这个特性需要babel-plugin-transform-class-properties来转译，这个插件在原来是包含在stage-2里面的，现在，需要单独引入。
+
+### 20190124
+-   文件size小于limit参数，url-loader将会把文件转为DataURL；文件size大于limit，url-loader会调用file-loader进行处理，参数也会直接传给file-loader。因此我们只需要安装url-loader即可。[参考资料](https://blog.csdn.net/WEB_YH/article/details/79325182)

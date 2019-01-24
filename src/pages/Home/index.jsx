@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import { connect } from 'dva';
+import avatar from '../../assets/img/avatar.png'
 
 class Home extends React.Component {
     updateName = () => {
@@ -19,6 +20,7 @@ class Home extends React.Component {
             <div className={styles['container-home']}>
                 welcome to my home, {name}
                 <div onClick={this.updateName}>show my name</div>
+                <img src={avatar} alt=""/>
             </div>
         );
     }

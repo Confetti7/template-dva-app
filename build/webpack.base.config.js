@@ -29,6 +29,16 @@ module.exports = {
                 test: /\.(js|jsx)?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
+                loader: 'url-loader',
+                options: {
+                    outputPath: 'static/imgs/', // 图片输出的路径
+                    limit: 1 * 1024
+                },
+                include: src('assets'),
+                exclude: /node_modules/
             }
         ]
     },
