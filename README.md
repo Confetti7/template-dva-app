@@ -1,4 +1,4 @@
-## create-dva-app
+## template-dva-app
 
 ## webapck/spa/react/dll
 
