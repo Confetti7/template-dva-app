@@ -19,7 +19,7 @@ class Home extends React.Component {
         return (
             <div className={styles['container-home']}>
                 welcome to my home, {name}
-                <div onClick={this.updateName}>show my name</div>
+                <div className={styles.action} onClick={this.updateName}>show my name</div>
                 {/* <img src={avatar} alt=""/> */}
             </div>
         );

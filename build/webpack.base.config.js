@@ -22,36 +22,34 @@ module.exports = {
     output: {
         filename: '[name].[chunkhash].js',
         path: path.join(__dirname, '../dist'),
-        publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
+        publicPath: './'
     },
     optimization: {
         splitChunks: {
-            chunks: 'initial',
-            minSize: 1 * 1024,
+            chunks: 'all', // 默认async
+            minSize: 30 * 1024,
             minChunks: 1, // 共享该module的最小chunk数
             maxAsyncRequests: 5,
             maxInitialRequests: 3, // 初始化的时候最多有3个请求该module,太多就没必要抽离了
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
-                react: {
+                polyfill: {
                     test: (module, chunks) => {
-                        console.log(module.context);
-                        return /(react)/.test(module.context);
+                        return /(core-js)/.test(module.context);
                     },
-                    priority: 1, // 定义优先级
+                    priority: 1,
                     reuseExistingChunk: true
                 },
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
+                react: {
+                    test: /(react)/,
+                    priority: 0,
                     reuseExistingChunk: true
                 }
             }
+        },
+        runtimeChunk: {
+            name: entry => `runtime~${entry.name}`
         }
     },
     module: {
@@ -90,10 +88,8 @@ module.exports = {
             minify: {
                 minifyCSS: true,
                 minifyJS: true
-            }
-            // chunks: ['manifest', 'vendor', 'main'],
-            // favicon: src('favicon.ico'),
-            // chunksSortMode: 'dependency',
+            },
+            favicon: src('favicon.ico')
         })
     ],
     resolve: {

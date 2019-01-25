@@ -6,7 +6,7 @@
 const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
-const config = require('./build/webpack.dev.config.js'); 
+const config = require('../build/webpack.dev.config.js'); 
 
 const port = 7777;
 const options = {

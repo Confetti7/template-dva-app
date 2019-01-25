@@ -8,8 +8,8 @@
     "scripts": {
         "analyze": "rimraf ./dist && cross-env CODE_ENV=development webpack --config build/webpack.prod.config.js --progress --colors",
         "build": "rimraf ./dist && cross-env CODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
-        "dev": "cross-env CODE_ENV=development nodemon ./server.dev.js",
-        "server": "nodemon ./server.js"
+        "dev": "cross-env CODE_ENV=development nodemon ./server/dev.js",
+        "server": "nodemon ./server/index.js"
     },
     "dependencies": {
         "core-js": "^2.6.3",
