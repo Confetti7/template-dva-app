@@ -6,9 +6,9 @@
     "author": "liuxu",
     "license": "MIT",
     "scripts": {
-        "analyze": "rimraf ./dist && cross-env CODE_ENV=development webpack --config build/webpack.prod.config.js --progress --colors",
-        "build": "rimraf ./dist && cross-env CODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
-        "dev": "cross-env CODE_ENV=development nodemon ./server/dev.js",
+        "analyze": "rimraf ./dist && cross-env NODE_ENV=development webpack --config build/webpack.prod.config.js --progress --colors",
+        "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
+        "dev": "cross-env NODE_ENV=development nodemon ./server/dev.js",
         "server": "nodemon ./server/index.js"
     },
     "dependencies": {
@@ -29,6 +29,7 @@
         "@babel/preset-react": "^7.0.0",
         "autoprefixer": "^9.4.6",
         "babel-loader": "^8.0.5",
+        "copy-webpack-plugin": "^4.6.0",
         "cross-env": "^5.2.0",
         "css-loader": "^2.1.0",
         "file-loader": "^3.0.1",

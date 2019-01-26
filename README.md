@@ -11,7 +11,7 @@
 
 ### 20190123
 
--   将环境变量 CODE_ENV 作用缩小，打包区别更多的体现在 config 文件内
+-   将环境变量 NODE_ENV 作用缩小，打包区别更多的体现在 config 文件内
 -   样式热更新，区分一下 MiniCssExtractPlugin.loader 和 style-loader 的使用
 -   class 普通函数使用箭头函数模式，自动绑定 this。这个特性需要 babel-plugin-transform-class-properties 来转译，这个插件在原来是包含在 stage-2 里面的，现在，需要单独引入
 

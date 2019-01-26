@@ -3,25 +3,22 @@
  * @Date: 2019-01-22 2:41:18
  */
 
-// node内置模块
-const path = require('path');
-
-// 第三方插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const { src } = require('./webpack.utils');
+const { resolve, src } = require('./webpack.utils');
 
-console.log(process.env.CODE_ENV);
+console.log(process.env.NODE_ENV);
 
 module.exports = {
     target: 'web',
-    mode: process.env.CODE_ENV,
+    mode: process.env.NODE_ENV,
     entry: {
-        index: path.join(__dirname, '../src/index.jsx')
+        index: src('index.jsx')
     },
     output: {
         filename: '[name].[chunkhash].js',
-        path: path.join(__dirname, '../dist'),
+        path: resolve('dist'),
         publicPath: './'
     },
     optimization: {
@@ -90,7 +87,10 @@ module.exports = {
                 minifyJS: true
             },
             favicon: src('favicon.ico')
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: src('favicon.ico'), to: resolve('dist') }
+        ])
     ],
     resolve: {
         alias: {

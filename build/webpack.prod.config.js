@@ -32,7 +32,7 @@ module.exports = merge(base, {
             filename: '[name].[chunkhash].css'
         })
     ].concat(
-        process.env.CODE_ENV === 'development'
+        process.env.NODE_ENV === 'development'
             ? [
                   new BundleAnalyzerPlugin({
                       openAnalyzer: true
