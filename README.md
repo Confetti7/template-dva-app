@@ -24,8 +24,9 @@
 
 -   配置 splitChunks，切割 core-js，react 以便作缓存文件
 -   配置 runtimeChunk，创建一个运行时文件，以便为所有生成的块共享(默认 false，每个条目块都会嵌入运行文件)
--   mode 设置成 development，会将 process.env.NODE_ENV 的值设为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin。
--   mode 设置成 production，会将 process.env.NODE_ENV 的值设为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 UglifyJsPlugin.
+-   mode 设置成 development，会将 process.env.NODE_ENV 的值设为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin
+-   mode 设置成 production，会将 process.env.NODE_ENV 的值设为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 UglifyJsPlugin
 
 ### 20190126
 -   配置performance;支持写入全局变量
+-   添加compression-webpack-plugin，开启静态压缩(gizp文件)，如果nginx已开启或后端已配置可以去掉
