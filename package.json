@@ -6,8 +6,8 @@
     "author": "liuxu",
     "license": "MIT",
     "scripts": {
-        "analyze": "rimraf ./dist && cross-env NODE_ENV=development webpack --config build/webpack.prod.config.js --progress --colors",
-        "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --colors",
+        "analyze": "rimraf ./dist && cross-env NODE_ENV=development webpack --config build/webpack.prod.config.js --profile --progress --colors",
+        "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --profile --progress --colors",
         "dev": "cross-env NODE_ENV=development nodemon ./server/dev.js",
         "server": "nodemon ./server/index.js"
     },

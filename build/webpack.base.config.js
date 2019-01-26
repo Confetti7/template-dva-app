@@ -3,6 +3,7 @@
  * @Date: 2019-01-22 2:41:18
  */
 
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -11,7 +12,6 @@ const { resolve, src } = require('./webpack.utils');
 console.log(process.env.NODE_ENV);
 
 module.exports = {
-    target: 'web',
     mode: process.env.NODE_ENV,
     entry: {
         index: src('index.jsx')
@@ -20,6 +20,9 @@ module.exports = {
         filename: '[name].[chunkhash].js',
         path: resolve('dist'),
         publicPath: './'
+    },
+    performance: {
+        hints: false
     },
     optimization: {
         splitChunks: {
@@ -32,15 +35,18 @@ module.exports = {
             name: true,
             cacheGroups: {
                 polyfill: {
-                    test: (module, chunks) => {
-                        return /(core-js)/.test(module.context);
-                    },
+                    test: /(core-js)/,
                     priority: 1,
                     reuseExistingChunk: true
                 },
                 react: {
                     test: /(react)/,
                     priority: 0,
+                    reuseExistingChunk: true
+                },
+                vendor: {
+                    test: /node_modules/,
+                    priority: -1,
                     reuseExistingChunk: true
                 }
             }
@@ -82,21 +88,22 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: src('index.html'),
             filename: 'index.html',
-            minify: {
-                minifyCSS: true,
-                minifyJS: true
-            },
             favicon: src('favicon.ico')
         }),
         new CopyWebpackPlugin([
             { from: src('favicon.ico'), to: resolve('dist') }
-        ])
+        ]),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        })
     ],
     resolve: {
         alias: {
+            assets: src('assets'),
             containers: src('containers'),
             components: src('components'),
-            pages: src('pages')
+            pages: src('pages'),
+            utils: src('utils')
         },
         extensions: ['*', '.js', '.jsx']
     }
