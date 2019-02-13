@@ -29,4 +29,8 @@
 
 ### 20190126
 -   配置performance;支持写入全局变量
--   添加compression-webpack-plugin，开启静态压缩(gizp文件)，如果nginx已开启或后端已配置可以去掉
+-   添加compression-webpack-plugin，开启静态压缩(gizp文件)，如果nginx已开启或后端已配置可以去掉  
+
+### 20190213
+-   启用gzip需要客户端和服务端的支持，如果客户端支持gzip的解析，那么只要服务端能够返回gzip的文件就可以启用gzip了
+-   node引入compression模块即可
