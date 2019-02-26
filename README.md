@@ -34,3 +34,7 @@
 ### 20190213
 -   启用gzip需要客户端和服务端的支持，如果客户端支持gzip的解析，那么只要服务端能够返回gzip的文件就可以启用gzip了
 -   node引入compression模块即可
+
+### 20190226
+-   手动配置uglifyjs-webpack-plugin覆盖默认配置优化压缩js，配置OptimizeCssAssetsPlugin压缩css
+-   去掉analyze，简化packjson，使用yarn build -a进行打包代码分析
