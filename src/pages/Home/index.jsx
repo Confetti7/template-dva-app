@@ -1,26 +1,32 @@
 import React from 'react';
-import styles from './index.less';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
+import styles from './index.less';
 // import avatar from '../../assets/imgs/avatar.png'
 
 class Home extends React.Component {
+    static propTypes = {
+        dispatch: PropTypes.func,
+        home: PropTypes.object,
+    };
+
     updateName = () => {
         this.props.dispatch({
             type: 'home/update',
-            payload: { name: 'liuxu' } // 需要传递的信息
+            payload: { name: 'liuxu' }, // 需要传递的信息
         });
     };
 
     render() {
         console.log(NODE_ENV);
         const {
-            home: { name = 'null' }
+            home: { name = 'null' },
         } = this.props;
 
         return (
             <div className={styles['container-home']}>
                 welcome to my home, {name}
-                <div className={styles.action} onClick={this.updateName}>
+                <div role="button" className={styles.action} onClick={this.updateName}>
                     show my name
                 </div>
                 {/* <img src={avatar} alt=""/> */}
@@ -30,5 +36,5 @@ class Home extends React.Component {
 }
 
 export default connect(({ home }) => ({
-    home
+    home,
 }))(Home);

@@ -15,11 +15,11 @@ import routes from './utils/router';
 
 // 创建应用
 const app = dva({
-    history: createHistory()
+    history: createHistory(),
 });
 
 // 绑定数据
-models.forEach(model => {
+models.forEach((model) => {
     app.model(model);
 });
 

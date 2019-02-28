@@ -1,14 +1,14 @@
 export default {
     namespace: 'home',
     state: {
-        name: 'xx'
+        name: 'xx',
     },
     reducers: {
         update(state, { payload }) {
             return Object.assign({}, state, {
-                name: payload.name
+                name: payload.name,
             });
-        }
+        },
     },
-    effects: {}
+    effects: {},
 };

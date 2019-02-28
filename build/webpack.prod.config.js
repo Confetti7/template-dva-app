@@ -46,9 +46,16 @@ module.exports = merge(base, {
                 extractComments: false,
                 uglifyOptions: {
                     compress: {
-                        unused: true,
                         warnings: false,
-                        drop_debugger: true
+                        drop_debugger: true,
+                        drop_console: true,
+                        conditionals: true,
+                        unused: true,
+                        comparisons: true,
+                        sequences: true,
+                        dead_code: true,
+                        evaluate: true,
+                        if_return: true
                     },
                     output: {
                         comments: false

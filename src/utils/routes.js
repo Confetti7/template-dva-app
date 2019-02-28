@@ -6,12 +6,12 @@ export default [
         title: '首页',
         path: '/',
         component: Home,
-        exact: true
+        exact: true,
     },
     {
         title: 'Look',
         path: '/look',
         component: Look,
-        exact: true
-    }
+        exact: true,
+    },
 ];
