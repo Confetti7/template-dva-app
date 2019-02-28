@@ -6,7 +6,7 @@
 const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
-const config = require('../build/webpack.dev.config.js'); 
+const config = require('../build/webpack.dev.config.js');
 
 const port = 7777;
 const options = {
@@ -17,7 +17,10 @@ const options = {
     disableHostCheck: true,
     port: port, //端口号
     compress: true, //开发服务器是否启动gzip等压缩
-    noInfo: false // 启用 noInfo 后，诸如「启动时和每次保存之后，那些显示的 webpack 包(bundle)信息」的消息将被隐藏。错误和警告仍然会显示。
+    noInfo: false, // 启用 noInfo 后，诸如「启动时和每次保存之后，那些显示的 webpack 包(bundle)信息」的消息将被隐藏。错误和警告仍然会显示。
+    historyApiFallback: {
+        index: '../dist/index.html'
+    }
 };
 
 webpackDevServer.addDevServerEntrypoints(config, options);

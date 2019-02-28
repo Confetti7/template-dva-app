@@ -1,20 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Switch, Route } from 'dva/router';
+import routesData from './routes';
 
 import { AppContainer } from 'react-hot-loader';
 import BasicLayout from '../containers/BasicLayout';
-
-import Home from '../pages/Home';
-
-const routesData = [
-    {
-        title: '首页',
-        path: '/',
-        component: Home,
-        exact: true
-    }
-];
+import NoMatch from '../pages/404';
 
 export default function routes({ history }) {
     return (
@@ -33,11 +24,13 @@ export default function routes({ history }) {
                             )}
                         />
                     ))}
+                    <Route component={NoMatch} />
                 </Switch>
             </Router>
         </AppContainer>
     );
 }
+
 routes.propTypes = {
     history: PropTypes.object
 };
