@@ -26,11 +26,11 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            chunks: 'all', // 默认async
+            chunks: 'all',
             minSize: 30 * 1024,
-            minChunks: 1, // 共享该module的最小chunk数
+            minChunks: 1,
             maxAsyncRequests: 5,
-            maxInitialRequests: 3, // 初始化的时候最多有3个请求该module,太多就没必要抽离了
+            maxInitialRequests: Infinity,
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
@@ -40,7 +40,7 @@ module.exports = {
                     reuseExistingChunk: true
                 },
                 react: {
-                    test: /(react)/,
+                    test: /(react)|(redux)/,
                     priority: 0,
                     reuseExistingChunk: true
                 },
