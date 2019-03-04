@@ -6,7 +6,7 @@ export default class Look extends React.PureComponent {
         return (
             <div>
                 <Prompt message="Are you sure you want to leave?" />
-                <Link to="/">
+                <Link to="/look/2">
                     <div>have a look</div>
                 </Link>
             </div>

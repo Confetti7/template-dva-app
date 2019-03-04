@@ -11,9 +11,8 @@ export default [
     },
     {
         title: '看一看瞧一瞧了啊',
-        path: '/look',
+        path: '/look/:id',
         component: Look,
-        exact: true,
         needLogin: true,
     },
 ];
