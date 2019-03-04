@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Switch, Route } from 'dva/router';
+import { Router, Switch } from 'dva/router';
 import { AppContainer } from 'react-hot-loader';
+import Route from '../components/RouteWithLifecycle';
+
 import routes from './routes';
 
 import BasicLayout from '../containers/BasicLayout';
@@ -19,7 +21,6 @@ export default function router({ history }) {
                             path={item.path}
                             exact={item.exact}
                             render={(matchProps) => {
-                                console.log(matchProps);
                                 const matchRoute = routes.filter(route => route.path === matchProps.match.path)[0];
                                 document.title = matchRoute.title;
                                 // 登录重定向逻辑
@@ -29,6 +30,16 @@ export default function router({ history }) {
                                         <item.component {...matchProps} />
                                     </BasicLayout>
                                 );
+                            }}
+                            onEnter={(props) => {
+                                console.log('onEnter', props);
+                            }}
+                            onUpdate={(props, nextProps) => {
+                                console.log('onUpdate', props);
+                                console.log('onUpdate', nextProps);
+                            }}
+                            onLeave={(props) => {
+                                console.log('onLeave', props);
                             }}
                         />
                     ))}
