@@ -38,3 +38,7 @@
 ### 20190226
 -   手动配置uglifyjs-webpack-plugin覆盖默认配置优化压缩js，配置OptimizeCssAssetsPlugin压缩css
 -   去掉analyze，简化packjson，使用yarn build -a进行打包代码分析
+
+### 20190305
+-   配置offline-plugin构建PWA应用
+-   添加babel/plugin-syntax-dynamic-import插件支持import then写法

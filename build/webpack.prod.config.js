@@ -8,32 +8,25 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
 
-const Analyzer = process.argv
-    ? process.argv[process.argv.length - 1] === '-a'
-    : false;
+const Analyzer = process.argv ? process.argv[process.argv.length - 1] === '-a' : false;
 
 module.exports = merge(base, {
     module: {
         rules: [
             {
                 test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
-                    'postcss-loader',
-                    'less-loader'
-                ],
+                use: [MiniCssExtractPlugin.loader, 'css-loader?modules&localIdentName=[name]-[hash:base64:5]', 'postcss-loader', 'less-loader'],
                 include: resolve('src'),
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
     optimization: {
         minimizer: [
@@ -48,19 +41,19 @@ module.exports = merge(base, {
                     compress: {
                         warnings: false,
                         drop_debugger: true,
-                        drop_console: true,
+                        // drop_console: true,
                         conditionals: true,
                         unused: true,
                         comparisons: true,
                         sequences: true,
                         dead_code: true,
                         evaluate: true,
-                        if_return: true
+                        if_return: true,
                     },
                     output: {
-                        comments: false
-                    }
-                }
+                        comments: false,
+                    },
+                },
             }),
             // 用于优化css文件
             new OptimizeCssAssetsPlugin({
@@ -70,30 +63,31 @@ module.exports = merge(base, {
                     autoprefixer: { disable: true }, // 禁用掉cssnano对于浏览器前缀的处理 否则会把autoprefixer加好的前缀去掉
                     mergeLonghand: false,
                     discardComments: {
-                        removeAll: true
-                    }
+                        removeAll: true,
+                    },
                 },
-                canPrint: true
-            })
-        ]
+                canPrint: true,
+            }),
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].[chunkhash].css'
+            filename: '[name].[chunkhash].css',
         }),
+        new OfflinePlugin(),
         new CompressionWebpackPlugin({
             test: /\.(js|css)?$/,
             algorithm: 'gzip',
             threshold: 10 * 1024,
-            minRatio: 0.8
-        })
+            minRatio: 0.8,
+        }),
     ].concat(
         Analyzer
             ? [
-                  new BundleAnalyzerPlugin({
-                      openAnalyzer: true
-                  })
-              ]
-            : []
-    )
+                new BundleAnalyzerPlugin({
+                    openAnalyzer: true,
+                }),
+            ]
+            : [],
+    ),
 });

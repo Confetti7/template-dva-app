@@ -13,6 +13,20 @@ import FastClick from 'fastclick';
 import models from './models';
 import routes from './utils/router';
 
+NODE_ENV === 'production'
+    && import('offline-plugin/runtime').then((OfflinePluginRuntime) => {
+        OfflinePluginRuntime.install();
+    });
+
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.getRegistration().then((registration) => {
+//         registration
+//             && registration.unregister().then((boolean) => {
+//                 boolean ? alert('註銷成功') : alert('註銷失敗');
+//             });
+//     });
+// }
+
 // 创建应用
 const app = dva({
     history: createHistory(),
