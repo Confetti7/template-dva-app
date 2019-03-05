@@ -74,7 +74,12 @@ module.exports = merge(base, {
         new MiniCssExtractPlugin({
             filename: '[name].[chunkhash].css',
         }),
-        new OfflinePlugin(),
+        new OfflinePlugin({
+            ServiceWorker: {
+                events: true,
+                minify: false,
+            },
+        }),
         new CompressionWebpackPlugin({
             test: /\.(js|css)?$/,
             algorithm: 'gzip',
