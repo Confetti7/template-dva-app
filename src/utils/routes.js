@@ -1,5 +1,7 @@
-import Home from '../pages/Home';
-import Look from '../pages/Look';
+import Loadable from '../components/Loadable';
+
+const Home = Loadable(() => import('../pages/Home'));
+const Look = Loadable(() => import('../pages/Look'));
 
 // 路由权限过滤
 export default [

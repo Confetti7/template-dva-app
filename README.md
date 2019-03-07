@@ -42,3 +42,6 @@
 ### 20190305
 -   配置offline-plugin构建PWA应用
 -   添加babel/plugin-syntax-dynamic-import插件支持import then写法
+
+### 20190307
+-   添加react-loadable切割业务代码

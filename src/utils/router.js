@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Switch } from 'dva/router';
 import { AppContainer } from 'react-hot-loader';
-import Route from '../components/RouteWithLifecycle';
 
+import { Router, Switch } from 'dva/router';
+import Route from '../components/RouteWithLifecycle';
 import routes from './routes';
 
 import BasicLayout from '../containers/BasicLayout';
