@@ -17,7 +17,7 @@ module.exports = {
         index: src('index.jsx')
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: 'static/js/[name].[chunkhash].js',
         path: resolve('dist'),
         publicPath: '/'
     },

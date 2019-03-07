@@ -72,10 +72,11 @@ module.exports = merge(base, {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].[chunkhash].css',
+            filename: 'static/css/[name].[chunkhash].css',
         }),
         new OfflinePlugin({
             ServiceWorker: {
+                output: 'static/js/sw.js',
                 events: true,
                 minify: false,
             },

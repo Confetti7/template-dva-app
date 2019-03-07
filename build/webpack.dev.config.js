@@ -12,7 +12,7 @@ const { resolve } = require('./webpack.utils');
 module.exports = merge(base, {
     output: {
         // 热更新(HMR)不能和[chunkhash]同时使用。
-        filename: '[name].[hash].js'
+        filename: 'static/js/[name].[hash].js'
     },
     module: {
         rules: [

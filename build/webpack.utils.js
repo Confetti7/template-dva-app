@@ -22,7 +22,7 @@ function clean(filePath) {
             console.log('已成功删除', filePath);
         }
     } catch (err) {
-        // 处理错误
+        console.log('删除文件失败', filePath);
     }
 }
 
@@ -30,5 +30,5 @@ module.exports = {
     resolve,
     src,
     dirs,
-    clean
+    clean,
 };
