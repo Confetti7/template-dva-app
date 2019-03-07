@@ -76,7 +76,6 @@ module.exports = merge(base, {
         }),
         new OfflinePlugin({
             ServiceWorker: {
-                output: 'static/js/sw.js',
                 events: true,
                 minify: false,
             },
