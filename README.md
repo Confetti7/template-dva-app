@@ -45,3 +45,6 @@
 
 ### 20190307
 -   添加react-loadable切割业务代码
+
+### 20190308
+-   添加manifest.json

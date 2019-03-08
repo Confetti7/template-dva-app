@@ -97,7 +97,9 @@ module.exports = {
             favicon: src('favicon.ico')
         }),
         new CopyWebpackPlugin([
-            { from: src('favicon.ico'), to: resolve('dist') }
+            { from: src('favicon.ico'), to: resolve('dist') },
+            { from: src('manifest.json'), to: resolve('dist') },
+            { from: src('assets/imgs/icons'), to: resolve('dist/static/imgs/icons') }
         ]),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(process.env.NODE_ENV)
