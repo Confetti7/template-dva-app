@@ -12,7 +12,7 @@ export default [
         exact: true,
     },
     {
-        title: '看一看瞧一瞧了啊',
+        title: 'cNode列表',
         path: '/look/:id',
         component: Look,
         needLogin: true,

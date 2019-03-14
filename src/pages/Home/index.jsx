@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import styles from './index.less';
-// import avatar from '../../assets/imgs/avatar.png'
 
 class Home extends React.Component {
     static propTypes = {
@@ -20,18 +19,22 @@ class Home extends React.Component {
 
     render() {
         console.log(NODE_ENV);
+
         const {
             home: { name = 'null' },
         } = this.props;
 
         return (
             <div className={styles['container-home']}>
-                welcome to my home, {name}
-                <div role="button" className={styles.action} onClick={this.updateName}>
+                <div className={styles['row-bg']} />
+
+                <div className={styles['row-welcome']}>
+                    welcome to my home, {name} <Link to="/look/1">have a look</Link>
+                </div>
+
+                <div role="button" className={styles['row-action']} onClick={this.updateName}>
                     show my name
                 </div>
-                <Link to="/look/1">have a look</Link>
-                {/* <img src={avatar} alt=""/> */}
             </div>
         );
     }

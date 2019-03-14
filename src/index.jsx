@@ -5,6 +5,7 @@
 
 import dva from 'dva';
 import './common/less/base.less';
+import './common/less/common.less';
 import './index.less';
 import createHistory from 'history/createBrowserHistory';
 
