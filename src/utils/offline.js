@@ -1,5 +1,5 @@
-NODE_ENV === 'production'
-    && import('offline-plugin/runtime').then((OfflinePluginRuntime) => {
+if (NODE_ENV === 'production') {
+    import('offline-plugin/runtime').then((OfflinePluginRuntime) => {
         OfflinePluginRuntime.install({
             onUpdating: () => {
                 console.log('SW Event:', 'onUpdating');
@@ -19,12 +19,12 @@ NODE_ENV === 'production'
             },
         });
     });
-
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.getRegistration().then((registration) => {
-//         registration
-//             && registration.unregister().then((boolean) => {
-//                 boolean ? alert('註銷成功') : alert('註銷失敗');
-//             });
-//     });
-// }
+} else {
+    'serviceWorker' in navigator
+        && navigator.serviceWorker.getRegistration().then((registration) => {
+            registration
+                && registration.unregister().then((boolean) => {
+                    boolean ? alert('註銷成功') : alert('註銷失敗');
+                });
+        });
+}

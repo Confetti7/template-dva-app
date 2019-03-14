@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AppContainer } from 'react-hot-loader';
 
 import { Router, Switch } from 'dva/router';
-import Route from '../components/RouteWithLifecycle';
+import { Route } from '../components';
 import routes from './routes';
 
 import BasicLayout from '../containers/BasicLayout';
@@ -13,7 +13,14 @@ import NoMatch from '../pages/404';
 export default function router({ history }) {
     return (
         <AppContainer>
-            <Router history={history}>
+            <Router
+                history={history}
+                getUserConfirmation={(message, callback) => {
+                    debugger;
+                    const allowTransition = window.confirm(message);
+                    callback(allowTransition);
+                }}
+            >
                 <Switch>
                     {routes.map(item => (
                         <Route
@@ -35,8 +42,8 @@ export default function router({ history }) {
                                 console.log('onEnter', props);
                             }}
                             onUpdate={(props, nextProps) => {
-                                console.log('onUpdate', props);
-                                console.log('onUpdate', nextProps);
+                                console.log('onUpdate: props', props);
+                                console.log('onUpdate: nextProps', nextProps);
                             }}
                             onLeave={(props) => {
                                 console.log('onLeave', props);
