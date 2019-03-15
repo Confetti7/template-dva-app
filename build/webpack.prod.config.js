@@ -7,15 +7,36 @@ const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
-
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
 
-const Analyzer = process.argv ? process.argv[process.argv.length - 1] === '-a' : false;
+const command = process.argv;
+const extraPlugins = [];
+
+for (let i = 0; i < command.length; i++) {
+    if (command[i] === '-a') {
+        extraPlugins.push(
+            new BundleAnalyzerPlugin({
+                openAnalyzer: true,
+            }),
+        );
+    }
+    if (command[i] === '-c') {
+        extraPlugins.push(
+            new CompressionWebpackPlugin({
+                test: /\.(js|css)?$/,
+                algorithm: 'gzip',
+                threshold: 10 * 1024,
+                minRatio: 0.8,
+            }),
+        );
+    }
+}
+console.log(extraPlugins);
 
 module.exports = merge(base, {
     module: {
@@ -80,19 +101,5 @@ module.exports = merge(base, {
                 minify: false,
             },
         }),
-        new CompressionWebpackPlugin({
-            test: /\.(js|css)?$/,
-            algorithm: 'gzip',
-            threshold: 10 * 1024,
-            minRatio: 0.8,
-        }),
-    ].concat(
-        Analyzer
-            ? [
-                new BundleAnalyzerPlugin({
-                    openAnalyzer: true,
-                }),
-            ]
-            : [],
-    ),
+    ].concat(extraPlugins),
 });
