@@ -36,9 +36,9 @@ for (let i = 0; i < command.length; i++) {
         );
     }
 }
-console.log(extraPlugins);
 
 module.exports = merge(base, {
+    mode: 'development',
     module: {
         rules: [
             {
@@ -61,8 +61,8 @@ module.exports = merge(base, {
                 uglifyOptions: {
                     compress: {
                         warnings: false,
-                        drop_debugger: true,
-                        // drop_console: true,
+                        drop_debugger: false,
+                        drop_console: false,
                         conditionals: true,
                         unused: true,
                         comparisons: true,
@@ -97,8 +97,9 @@ module.exports = merge(base, {
         }),
         new OfflinePlugin({
             ServiceWorker: {
+                entry: resolve('src/utils/offline.js'),
+                output: 'offline.js',
                 events: true,
-                minify: false,
             },
         }),
     ].concat(extraPlugins),

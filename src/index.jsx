@@ -10,7 +10,7 @@ import './index.less';
 import createHistory from 'history/createBrowserHistory';
 
 import FastClick from 'fastclick';
-import './utils/offline';
+import './utils/runtime';
 
 import models from './models';
 import routes from './utils/router';
