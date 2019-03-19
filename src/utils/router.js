@@ -24,7 +24,7 @@ export default function router({ history }) {
                 <Switch>
                     {routes.map(item => (
                         <Route
-                            key={item.path}
+                            key={item.key}
                             path={item.path}
                             exact={item.exact}
                             render={(matchProps) => {

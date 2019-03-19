@@ -48,3 +48,7 @@
 
 ### 20190308
 -   添加manifest.json
+
+### 20190319
+-   完善PWA应用
+-   配置loadable

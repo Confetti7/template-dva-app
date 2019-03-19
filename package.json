@@ -5,9 +5,10 @@
     "main": "index.js",
     "author": "liuxu",
     "license": "MIT",
+    "sideEffects": false,
     "scripts": {
-        "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --profile --progress --colors",
         "dev": "cross-env NODE_ENV=development nodemon ./server/dev.js",
+        "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --profile --progress",
         "server": "node ./server/index.js"
     },
     "dependencies": {

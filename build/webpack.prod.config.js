@@ -1,6 +1,7 @@
 /*
  * @Author: liuxu
  * @Date: 2019-01-22 2:42:21
+ * @Mark: devServer不会生成文件，存于内存中。service worker执行需要实际的文件
  */
 
 const merge = require('webpack-merge');
@@ -16,6 +17,7 @@ const { resolve } = require('./webpack.utils');
 
 const command = process.argv;
 const extraPlugins = [];
+let devForSW = false;
 
 for (let i = 0; i < command.length; i++) {
     if (command[i] === '-a') {
@@ -35,10 +37,14 @@ for (let i = 0; i < command.length; i++) {
             }),
         );
     }
+    if (command[i] === '-sw') {
+        devForSW = true;
+    }
 }
 
 module.exports = merge(base, {
-    mode: 'development',
+    mode: devForSW ? 'development' : 'production',
+    watch: devForSW,
     module: {
         rules: [
             {
