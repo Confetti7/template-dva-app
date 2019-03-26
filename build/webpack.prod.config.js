@@ -17,6 +17,8 @@ const { resolve } = require('./webpack.utils');
 
 const command = process.argv;
 const extraPlugins = [];
+
+let watch = false;
 let devForSW = false;
 
 for (let i = 0; i < command.length; i++) {
@@ -37,6 +39,9 @@ for (let i = 0; i < command.length; i++) {
             }),
         );
     }
+    if (command[i] === '-w') {
+        watch = true;
+    }
     if (command[i] === '-sw') {
         devForSW = true;
     }
@@ -44,7 +49,7 @@ for (let i = 0; i < command.length; i++) {
 
 module.exports = merge(base, {
     mode: devForSW ? 'development' : 'production',
-    watch: devForSW,
+    watch,
     module: {
         rules: [
             {
@@ -102,6 +107,7 @@ module.exports = merge(base, {
             filename: 'static/css/[name].[chunkhash].css',
         }),
         new OfflinePlugin({
+            externals: ['/manifest.json', '/look/1', '/look/2'],
             ServiceWorker: {
                 entry: resolve('src/utils/offline.js'),
                 output: 'offline.js',

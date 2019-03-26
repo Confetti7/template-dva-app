@@ -6,14 +6,14 @@
 
 /* eslint no-restricted-globals: 1 */
 const CACHE_NAME = 'async-offline';
-const CACHE_LIST = ['https://cnodejs.org', '/look'];
+const CACHE_LIST = ['https://cnodejs.org'];
 
 self.addEventListener('fetch', (event) => {
     console.log('request', event.request);
-    debugger;
-
+    
     event.respondWith(
         caches.match(event.request).then((response) => {
+            debugger;
             const { url } = event.request;
             let isAsync = false;
 
