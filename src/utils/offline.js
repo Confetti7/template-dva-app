@@ -10,19 +10,13 @@ const CACHE_LIST = ['https://cnodejs.org'];
 
 self.addEventListener('fetch', (event) => {
     console.log('request', event.request);
-    
+
     event.respondWith(
         caches.match(event.request).then((response) => {
             debugger;
-            const { url } = event.request;
-            let isAsync = false;
 
-            for (let i = 0; i < CACHE_LIST.length; i++) {
-                if (url.includes(CACHE_LIST[i])) {
-                    isAsync = true;
-                    break;
-                }
-            }
+            const { url } = event.request;
+            const isAsync = CACHE_LIST.some(item => url.includes(item));
 
             // 如果是联网状态下 获取最新数据并缓存下来
             if (navigator.onLine) {
