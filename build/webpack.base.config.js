@@ -17,7 +17,8 @@ module.exports = {
         index: src('index.jsx')
     },
     output: {
-        filename: 'static/js/[name].[chunkhash].js',
+        filename: 'static/js/[name].[chunkhash].js', // entry命名规则
+        chunkFilename: 'static/js/[name].[chunkhash].js', // 设置按需加载后的chunk名字
         path: resolve('dist'),
         publicPath: '/'
     },
@@ -31,7 +32,7 @@ module.exports = {
             minChunks: 1,
             maxAsyncRequests: 5,
             maxInitialRequests: Infinity,
-            automaticNameDelimiter: '~',
+            automaticNameDelimiter: '-',
             name: true,
             cacheGroups: {
                 polyfill: {
@@ -73,8 +74,11 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     outputPath: 'static/imgs/', // 图片输出的路径
-                    name: '[name].[hash:8].[ext]',
-                    limit: 10 * 1024
+                    limit: 10 * 1024,
+                    name: function (file) {
+                        console.log(file);
+                        return '[name].[hash:8].[ext]';
+                    },
                 },
                 include: src('assets/imgs')
             },

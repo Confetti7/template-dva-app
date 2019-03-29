@@ -1,7 +1,4 @@
-import loadable from './Loadable';
-
-const Home = loadable(() => import('../pages/Home'));
-const Look = loadable(() => import('../pages/Look'));
+import loadable from './loadable';
 
 // 路由权限过滤
 export default [
@@ -9,14 +6,14 @@ export default [
         title: '首页',
         key: '/',
         path: '/',
-        component: Home,
+        component: loadable('Home'),
         exact: true,
     },
     {
         title: 'cNode列表',
         key: '/look',
         path: '/look/:id',
-        component: Look,
+        component: loadable('Look'),
         needLogin: true,
     },
 ];

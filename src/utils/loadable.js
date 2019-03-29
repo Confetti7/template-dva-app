@@ -3,10 +3,10 @@ import loadable from 'react-loadable';
 import Loading from '../components/Loading';
 
 /* eslint-disable */
-export default function (loader) {
+export default function(chunkName) {
     return loadable({
-        loader,
-        loading: (props) => {
+        loader: () => import(/* webpackChunkName: "[request]" */ `../pages/${chunkName}`),
+        loading: props => {
             if (props.error) {
                 return <div>发生错误</div>;
             }
