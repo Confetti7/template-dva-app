@@ -5,7 +5,7 @@
  */
 
 if (NODE_ENV === 'production') {
-    import('offline-plugin/runtime').then((OfflinePluginRuntime) => {
+    import(/* webpackChunkName: "offline-runtime" */ 'offline-plugin/runtime').then((OfflinePluginRuntime) => {
         OfflinePluginRuntime.install({
             onUpdating: () => {
                 console.log('SW Event:', 'onUpdating');

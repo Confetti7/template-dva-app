@@ -19,7 +19,7 @@ const command = process.argv;
 const extraPlugins = [];
 
 let watch = false;
-let devForSW = false;
+let dev = false;
 
 for (let i = 0; i < command.length; i++) {
     if (command[i] === '-a') {
@@ -42,13 +42,13 @@ for (let i = 0; i < command.length; i++) {
     if (command[i] === '-w') {
         watch = true;
     }
-    if (command[i] === '-sw') {
-        devForSW = true;
+    if (command[i] === '-test') {
+        dev = true;
     }
 }
 
 module.exports = merge(base, {
-    mode: devForSW ? 'development' : 'production',
+    mode: dev ? 'development' : 'production',
     watch,
     module: {
         rules: [
@@ -107,7 +107,7 @@ module.exports = merge(base, {
             filename: 'static/css/[name].[chunkhash].css',
         }),
         new OfflinePlugin({
-            externals: ['/manifest.json', '/look/1', '/look/2'],
+            externals: ['/manifest.json'],
             ServiceWorker: {
                 entry: resolve('src/utils/offline.js'),
                 output: 'offline.js',

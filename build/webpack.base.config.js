@@ -53,7 +53,7 @@ module.exports = {
             }
         },
         runtimeChunk: {
-            name: entry => `runtime~${entry.name}`
+            name: entry => `runtime-${entry.name}`
         }
     },
     module: {
