@@ -52,3 +52,7 @@
 ### 20190319
 -   完善PWA应用
 -   配置loadable
+
+### 20190403
+-   配置devtool方便调试
+-   学习postMessage使用，计划使用监听message事件移除service-worker

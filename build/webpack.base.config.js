@@ -9,21 +9,24 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { resolve, src } = require('./webpack.utils');
 
-console.log(process.env.NODE_ENV);
+const { NODE_ENV } = process.env;
+
+console.log(NODE_ENV);
 
 module.exports = {
-    mode: process.env.NODE_ENV,
+    mode: NODE_ENV,
+    devtool: NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
     entry: {
-        index: src('index.jsx')
+        index: src('index.jsx'),
     },
     output: {
         filename: 'static/js/[name].[chunkhash].js', // entry命名规则
         chunkFilename: 'static/js/[name].[chunkhash].js', // 设置按需加载后的chunk名字
         path: resolve('dist'),
-        publicPath: '/'
+        publicPath: '/',
     },
     performance: {
-        hints: false
+        hints: false,
     },
     optimization: {
         splitChunks: {
@@ -38,23 +41,23 @@ module.exports = {
                 polyfill: {
                     test: /(core-js)/,
                     priority: 1,
-                    reuseExistingChunk: true
+                    reuseExistingChunk: true,
                 },
                 react: {
                     test: /(react)|(redux)/,
                     priority: 0,
-                    reuseExistingChunk: true
+                    reuseExistingChunk: true,
                 },
                 vendor: {
                     test: /node_modules/,
                     priority: -1,
-                    reuseExistingChunk: true
-                }
-            }
+                    reuseExistingChunk: true,
+                },
+            },
         },
         runtimeChunk: {
-            name: entry => `runtime-${entry.name}`
-        }
+            name: entry => `runtime-${entry.name}`,
+        },
     },
     module: {
         rules: [
@@ -62,12 +65,12 @@ module.exports = {
                 test: /\.(js|jsx)?$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(js|jsx)?$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -76,11 +79,10 @@ module.exports = {
                     outputPath: 'static/imgs/', // 图片输出的路径
                     limit: 10 * 1024,
                     name: function (file) {
-                        console.log(file);
                         return '[name].[hash:8].[ext]';
                     },
                 },
-                include: src('assets/imgs')
+                include: src('assets/imgs'),
             },
             {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
@@ -88,26 +90,26 @@ module.exports = {
                 options: {
                     outputPath: 'static/fonts/',
                     name: '[name].[hash:8].[ext]',
-                    limit: 10 * 1024
+                    limit: 10 * 1024,
                 },
-                include: src('assets/fonts')
-            }
-        ]
+                include: src('assets/fonts'),
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: src('index.html'),
             filename: 'index.html',
-            favicon: src('favicon.ico')
+            favicon: src('favicon.ico'),
         }),
         new CopyWebpackPlugin([
             { from: src('favicon.ico'), to: resolve('dist') },
             { from: src('manifest.json'), to: resolve('dist') },
-            { from: src('assets/imgs/icons'), to: resolve('dist/static/imgs/icons') }
+            { from: src('assets/imgs/icons'), to: resolve('dist/static/imgs/icons') },
         ]),
         new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-        })
+            NODE_ENV: JSON.stringify(NODE_ENV),
+        }),
     ],
     resolve: {
         alias: {
@@ -115,8 +117,8 @@ module.exports = {
             containers: src('containers'),
             components: src('components'),
             pages: src('pages'),
-            utils: src('utils')
+            utils: src('utils'),
         },
-        extensions: ['*', '.js', '.jsx']
-    }
+        extensions: ['*', '.js', '.jsx'],
+    },
 };

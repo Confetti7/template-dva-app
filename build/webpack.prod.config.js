@@ -1,7 +1,6 @@
 /*
  * @Author: liuxu
  * @Date: 2019-01-22 2:42:21
- * @Mark: devServer不会生成文件，存于内存中。service worker执行需要实际的文件
  */
 
 const merge = require('webpack-merge');
@@ -15,11 +14,11 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
 
+const { NODE_ENV } = process.env;
 const command = process.argv;
 const extraPlugins = [];
 
 let watch = false;
-let dev = false;
 
 for (let i = 0; i < command.length; i++) {
     if (command[i] === '-a') {
@@ -42,13 +41,10 @@ for (let i = 0; i < command.length; i++) {
     if (command[i] === '-w') {
         watch = true;
     }
-    if (command[i] === '-test') {
-        dev = true;
-    }
 }
 
 module.exports = merge(base, {
-    mode: dev ? 'development' : 'production',
+    mode: NODE_ENV,
     watch,
     module: {
         rules: [

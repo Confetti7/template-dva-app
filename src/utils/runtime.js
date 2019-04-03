@@ -2,6 +2,7 @@
  * @Author: liuxu
  * @Date: 2019-03-05 9:05:37
  * @Mark: service-worker更新与卸载
+ * @Mark: devServer不会生成文件，存于内存中。service worker执行需要实际的文件
  */
 
 if (NODE_ENV === 'production') {
@@ -25,12 +26,21 @@ if (NODE_ENV === 'production') {
             },
         });
     });
-} else {
-    'serviceWorker' in navigator
-        && navigator.serviceWorker.getRegistration().then((registration) => {
-            registration
-                && registration.unregister().then((boolean) => {
-                    boolean ? alert('註銷成功') : alert('註銷失敗');
-                });
-        });
 }
+
+window.addEventListener(
+    'message',
+    (event) => {
+        let { origin } = event;
+        if (origin !== 'http://localhost:8888') {
+            'serviceWorker' in navigator
+                && navigator.serviceWorker.getRegistration().then((registration) => {
+                    registration
+                        && registration.unregister().then((boolean) => {
+                            boolean ? alert('註銷成功') : alert('註銷失敗');
+                        });
+                });
+        }
+    },
+    false,
+);

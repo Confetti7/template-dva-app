@@ -11,13 +11,13 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <!-- robots(定义搜索引擎爬虫的索引方式) -->
-        <meta name="robots" content="all">
+        <meta name="robots" content="all" />
         <!-- author(作者) -->
-        <meta name="author" content="243691485@qq.com">
+        <meta name="author" content="243691485@qq.com" />
         <!-- copyright(版权) -->
-        <meta name="copyright" content="liuxu">
+        <meta name="copyright" content="liuxu" />
         <!-- revisit-after(搜索引擎爬虫重访时间) -->
-        <meta name="revisit-after" content="7 days" >
+        <meta name="revisit-after" content="7 days" />
         <!-- content-Type(设定网页字符集) -->
         <meta charset="utf-8" />
         <meta name="theme-color" content="#2196f3" />
@@ -32,15 +32,33 @@
         <noscript>
             You need to enable JavaScript to run this app.
         </noscript>
+
         <div id="root"></div>
+
+        <!-- <iframe
+            id="otherPage"
+            src="http://localhost:8888/"
+            frameborder="0"
+        ></iframe> -->
+
         <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+            This HTML file is a template.
+            If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+            You can add webfonts, meta tags, or analytics to this file.
+            The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    --></body>
+            To begin the development, run `npm start` or `yarn start`.
+            To create a production bundle, use `npm run build` or `yarn build`.
+        -->
+        <!-- <script>
+            setInterval(() => {
+                // 获取id为otherPage的iframe窗口对象
+                var iframeWin = document.getElementById('otherPage')
+                    .contentWindow;
+                // 向该窗口发送消息
+                iframeWin.postMessage('123', 'http://localhost:8888/');
+            }, 3000);
+        </script> -->
+    </body>
 </html>
