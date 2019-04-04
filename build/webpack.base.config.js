@@ -98,13 +98,14 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: src('index.html'),
+            template: resolve('public/index.html'),
+            favicon: resolve('public/favicon.ico'),
             filename: 'index.html',
-            favicon: src('favicon.ico'),
         }),
         new CopyWebpackPlugin([
-            { from: src('favicon.ico'), to: resolve('dist') },
-            { from: src('manifest.json'), to: resolve('dist') },
+            { from: resolve('public/favicon.ico'), to: resolve('dist') },
+            { from: resolve('public/manifest.json'), to: resolve('dist') },
+            { from: resolve('public/robots.txt'), to: resolve('dist') },
             { from: src('assets/imgs/icons'), to: resolve('dist/static/imgs/icons') },
         ]),
         new webpack.DefinePlugin({
