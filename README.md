@@ -56,3 +56,7 @@
 ### 20190403
 -   配置devtool方便调试
 -   学习postMessage使用，计划使用监听message事件移除service-worker
+
+### 20190404
+-   sideEffects副作用 import './test' test文件不会执行 
+-   import { a } from './test' => import './test/a'

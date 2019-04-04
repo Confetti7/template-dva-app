@@ -16,7 +16,6 @@ export default function router({ history }) {
             <Router
                 history={history}
                 getUserConfirmation={(message, callback) => {
-                    debugger;
                     const allowTransition = window.confirm(message);
                     callback(allowTransition);
                 }}

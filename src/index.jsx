@@ -4,16 +4,16 @@
  */
 
 import dva from 'dva';
-import './common/less/base.less';
-import './common/less/common.less';
-import './index.less';
 import createHistory from 'history/createBrowserHistory';
-
 import FastClick from 'fastclick';
-import './utils/runtime';
 
 import models from './models';
 import routes from './utils/router';
+import runtime from './utils/runtime';
+
+import './common/less/base.less';
+import './common/less/common.less';
+import './index.less';
 
 // 创建应用
 const app = dva({
@@ -30,5 +30,7 @@ app.router(routes);
 
 // 渲染页面
 app.start('#root');
+
+runtime();
 
 FastClick.attach(document.body);

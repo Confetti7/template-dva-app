@@ -17,8 +17,6 @@ self.addEventListener('fetch', (event) => {
 
     event.respondWith(
         caches.match(!isRoute ? event.request : location.origin).then((response) => {
-            debugger;
-
             // 如果是联网状态下 获取最新数据并缓存下来
             if (navigator.onLine) {
                 if (isAsync) {
