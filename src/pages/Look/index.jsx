@@ -30,8 +30,8 @@ export default class Look extends React.Component {
         );
     }
 
-    componentDidMount() {
-        axios
+    async componentDidMount() {
+        await axios
             .get('https://cnodejs.org/api/v1/topics?page=1')
             .then((res) => {
                 const { success, data } = res.data;
