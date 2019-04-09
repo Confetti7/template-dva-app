@@ -24,7 +24,7 @@ self.addEventListener('fetch', (event) => {
 
                     return fetch(fetchRequest).then((response) => {
                         // 检查是否为合法请求
-                        if (!response || response.status !== 200) {
+                        if (!response || response.status !== 200 || response.method !== 'GET') {
                             return response;
                         }
 
