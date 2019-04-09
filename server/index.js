@@ -14,7 +14,7 @@ app.get('*', function (req, res) {
 });
 
 app.listen(port, function () {
-    console.log(`server is listening on http://localhost:${port}!`);
+    console.log(`server is listening on http://localhost:${port}`);
 });
 
 // 支持https
