@@ -45,6 +45,7 @@ for (let i = 0; i < command.length; i++) {
 
 module.exports = merge(base, {
     mode: NODE_ENV,
+    devtool: 'none', // https://webpack.js.org/configuration/devtool/#special-cases
     watch,
     module: {
         rules: [

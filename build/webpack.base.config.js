@@ -15,7 +15,6 @@ console.log(NODE_ENV);
 
 module.exports = {
     mode: NODE_ENV,
-    devtool: NODE_ENV === 'development' ? 'cheap-module-eval-source-map' : 'none', // https://webpack.js.org/configuration/devtool/#special-cases
     entry: {
         index: src('index.jsx'),
     },
