@@ -9,42 +9,46 @@ const CACHE_NAME = 'async-offline';
 const CACHE_LIST = ['https://cnodejs.org'];
 
 self.addEventListener('fetch', (event) => {
-    console.log('request', event.request);
+    const { request } = event;
+    console.log('request', request);
 
-    const { url } = event.request;
-    const isAsync = CACHE_LIST.some(item => url.includes(item));
-    const isRoute = !isAsync && !url.includes('.');
+    // 不区分cors
+    if (request.method === 'GET') {
+        const { url } = request;
+        const inCache = CACHE_LIST.some(item => url.includes(item));
 
-    event.respondWith(
-        caches.match(!isRoute ? event.request : location.origin).then((response) => {
-            // 如果是联网状态下 获取最新数据并缓存下来
-            if (navigator.onLine) {
-                if (isAsync) {
-                    const fetchRequest = event.request.clone();
+        if (inCache) {
+            event.respondWith(
+                caches.match(event.request).then((response) => {
+                    // 如果是联网状态下 获取最新数据并缓存下来
+                    if (navigator.onLine) {
+                        const fetchRequest = event.request.clone();
 
-                    return fetch(fetchRequest).then((response) => {
-                        // 检查是否为合法请求
-                        if (!response || response.status !== 200 || response.method !== 'GET') {
-                            return response;
-                        }
+                        return fetch(fetchRequest).then((response) => {
+                            console.log('response', response);
+                            // 检查是否为合法请求
+                            if (!response || response.status !== 200) {
+                                return response;
+                            }
 
-                        let responseToCache = response.clone();
+                            let responseToCache = response.clone();
 
-                        return caches.keys().then((cacheList) => {
-                            const lastCache = cacheList[0];
-                            caches.open(lastCache || CACHE_NAME).then((cache) => {
-                                cache.put(event.request, responseToCache);
+                            return caches.keys().then((cacheList) => {
+                                const lastCache = cacheList[0];
+                                caches.open(lastCache || CACHE_NAME).then((cache) => {
+                                    cache.put(event.request, responseToCache);
+                                });
+                                return response;
                             });
-                            return response;
                         });
-                    });
-                }
-            }
+                    }
 
-            if (response) {
-                // 静态资源直接使用install cache
-                return response;
-            }
-        }),
-    );
+                    if (response) {
+                        // 静态资源直接使用install cache
+                        return response;
+                    }
+                }),
+            );
+        }
+    }
 });
