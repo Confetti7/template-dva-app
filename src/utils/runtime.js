@@ -29,11 +29,15 @@ export default function () {
         });
     }
 
-    window.addEventListener(
+    window.postMessage('unregister sw');
+
+    window.addEventListener( // 消息可来自open子窗口或者iframe
         'message',
         (event) => {
-            let { origin } = event;
-            if (origin === 'http://localhost:8888') {
+            console.log('event from message', event);
+
+            let { origin, data } = event;
+            if (origin === window.location.origin && data === 'unregister sw') {
                 'serviceWorker' in navigator
                     && navigator.serviceWorker.getRegistration().then((registration) => {
                         registration
