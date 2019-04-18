@@ -62,3 +62,7 @@
 -   import { a } from './test' => import './test/a'
 -   https环境localhost运行service worker An SSL certificate error occurred when fetching the script
     解决办法/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=./tmp --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://localhost:3000
+
+### 20190418
+-   server文件打包
+-   offline文件更新 消息发送 卸载示例
