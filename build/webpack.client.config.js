@@ -14,7 +14,6 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
 
-const { NODE_ENV } = process.env;
 const command = process.argv;
 const extraPlugins = [];
 

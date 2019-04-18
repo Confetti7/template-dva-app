@@ -10,7 +10,7 @@ app.use(compression());
 app.use(express.static('./dist'));
 
 app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../index.html'));
 });
 
 app.listen(port, function () {
