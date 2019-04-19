@@ -44,7 +44,7 @@ self.addEventListener('fetch', (event) => {
                     }
 
                     if (response) {
-                        // 静态资源直接使用install cache
+                        // 离线资源直接使用install cache
                         return response;
                     }
                 }),
