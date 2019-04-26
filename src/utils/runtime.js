@@ -42,7 +42,7 @@ export default function () {
                     && navigator.serviceWorker.getRegistration().then((registration) => {
                         registration
                             && registration.unregister().then((boolean) => {
-                                boolean ? alert('註銷成功') : alert('註銷失敗');
+                                boolean ? console.log('註銷成功') : console.log('註銷失敗');
                             });
                     });
             }
