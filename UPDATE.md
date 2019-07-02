@@ -66,3 +66,7 @@
 ### 20190418
 -   server文件打包
 -   offline文件更新 消息发送 卸载示例
+
+### 20190702
+-   升级react版本
+-   react.lazy替换react-loadable切割代码
