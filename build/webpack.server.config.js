@@ -6,6 +6,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const { resolve } = require('./webpack.utils');
 
@@ -42,6 +43,12 @@ module.exports = {
         ],
     },
     plugins: [
+        new CleanWebpackPlugin({
+            verbose: true,
+            cleanStaleWebpackAssets: false,
+            protectWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: ['**/*'],
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(NODE_ENV),

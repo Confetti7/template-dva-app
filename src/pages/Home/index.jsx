@@ -18,7 +18,7 @@ class Home extends React.Component {
     };
 
     render() {
-        console.log(NODE_ENV);
+        console.log('Home', NODE_ENV);
 
         const {
             home: { name = 'null' },

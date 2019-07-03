@@ -70,3 +70,7 @@
 ### 20190702
 -   升级react版本
 -   react.lazy替换react-loadable切割代码
+
+### 20190703
+-   删除rimraf
+-   使用CleanWebpackPlugin清理打包文件 可以释放yarn build:server && yarn build:client -w，参数自动加入插件的能力

@@ -4,12 +4,13 @@
  */
 
 const merge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const base = require('./webpack.base.config');
 const { resolve } = require('./webpack.utils');
@@ -43,8 +44,8 @@ for (let i = 0; i < command.length; i++) {
 }
 
 module.exports = merge(base, {
-    devtool: 'none', // https://webpack.js.org/configuration/devtool/#special-cases
-    watch,
+    devtool: 'none',
+    watch: watch,
     module: {
         rules: [
             {
@@ -99,6 +100,12 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new CleanWebpackPlugin({
+            verbose: true,
+            cleanStaleWebpackAssets: false,
+            protectWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: ['**/*', '!server', '!server/*'],
+        }),
         new MiniCssExtractPlugin({
             filename: 'static/css/[name].[chunkhash].css',
         }),
