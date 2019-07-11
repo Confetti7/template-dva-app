@@ -17,7 +17,7 @@ module.exports = {
     plugins: [
         '@babel/plugin-transform-runtime', // ES6 API
         ['@babel/plugin-proposal-decorators', { legacy: true }], // 支持装饰器写法
-        '@babel/plugin-proposal-class-properties', // 类中使用箭头函数
+        ['@babel/plugin-proposal-class-properties', { loose: true }], // 类中使用箭头函数
         '@babel/plugin-syntax-dynamic-import', // 异步import
     ],
 };
