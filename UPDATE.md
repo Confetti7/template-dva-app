@@ -28,49 +28,65 @@
 -   mode 设置成 production，会将 process.env.NODE_ENV 的值设为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 UglifyJsPlugin
 
 ### 20190126
--   配置performance;支持写入全局变量
--   添加compression-webpack-plugin，开启静态压缩(gizp文件)，如果nginx已开启或后端已配置可以去掉  
+
+-   配置 performance;支持写入全局变量
+-   添加 compression-webpack-plugin，开启静态压缩(gizp 文件)，如果 nginx 已开启或后端已配置可以去掉
 
 ### 20190213
--   启用gzip需要客户端和服务端的支持，如果客户端支持gzip的解析，那么只要服务端能够返回gzip的文件就可以启用gzip了
--   node引入compression模块即可
+
+-   启用 gzip 需要客户端和服务端的支持，如果客户端支持 gzip 的解析，那么只要服务端能够返回 gzip 的文件就可以启用 gzip 了
+-   node 引入 compression 模块即可
 
 ### 20190226
--   手动配置uglifyjs-webpack-plugin覆盖默认配置优化压缩js，配置OptimizeCssAssetsPlugin压缩css
--   去掉analyze，简化packjson，使用yarn build -a进行打包代码分析
+
+-   手动配置 uglifyjs-webpack-plugin 覆盖默认配置优化压缩 js，配置 OptimizeCssAssetsPlugin 压缩 css
+-   去掉 analyze，简化 packjson，使用 yarn build -a 进行打包代码分析
 
 ### 20190305
--   配置offline-plugin构建PWA应用
--   添加babel/plugin-syntax-dynamic-import插件支持import then写法
+
+-   配置 offline-plugin 构建 PWA 应用
+-   添加 babel/plugin-syntax-dynamic-import 插件支持 import then 写法
 
 ### 20190307
--   添加react-loadable切割业务代码
+
+-   添加 react-loadable 切割业务代码
 
 ### 20190308
--   添加manifest.json
+
+-   添加 manifest.json
 
 ### 20190319
--   完善PWA应用
--   配置loadable
+
+-   完善 PWA 应用
+-   配置 loadable
 
 ### 20190403
--   配置devtool方便调试
--   学习postMessage使用，计划使用监听message事件移除service-worker
+
+-   配置 devtool 方便调试
+-   学习 postMessage 使用，计划使用监听 message 事件移除 service-worker
 
 ### 20190404
--   sideEffects副作用 import './test' test文件不会执行 
+
+-   sideEffects 副作用 import './test' test 文件不会执行
 -   import { a } from './test' => import './test/a'
--   https环境localhost运行service worker An SSL certificate error occurred when fetching the script
+-   https 环境 localhost 运行 service worker An SSL certificate error occurred when fetching the script
     解决办法/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=./tmp --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://localhost:3000
 
 ### 20190418
--   server文件打包
--   offline文件更新 消息发送 卸载示例
+
+-   server 文件打包
+-   offline 文件更新 消息发送 卸载示例
 
 ### 20190702
--   升级react版本
--   react.lazy替换react-loadable切割代码
+
+-   升级 react 版本
+-   react.lazy 替换 react-loadable 切割代码
 
 ### 20190703
--   删除rimraf
--   使用CleanWebpackPlugin清理打包文件 可以释放yarn build:server && yarn build:client -w，参数自动加入插件的能力
+
+-   删除 rimraf
+-   使用 CleanWebpackPlugin 清理打包文件 可以释放 yarn build:server && yarn build:client -w，参数自动加入插件的能力
+
+### 20190712
+
+-   初识 AOP（面向切面编程）添加 before、after、time 钩子函数
