@@ -90,3 +90,8 @@
 ### 20190712
 
 -   初识 AOP（面向切面编程）添加 before、after、time 钩子函数
+
+### 20190729
+
+-   Babel编译通常会排除 node_modules，所以 "useBuiltIns": "usage" 存在风险，可能无法为依赖包添加必要的 polyfill，所以部分浏览器会有报错的现象
+-   @babel/plugin-transform-runtime 复用辅助函数
